@@ -1,0 +1,27 @@
+<header class="h-20 bg-red-700 flex items-center">
+  <nav class="p-4 w-full flex items-center justify-between">
+    <div>
+      <img [src]="company.img" alt="" class="w-24 h-16 bg-white rounded-full" />
+    </div>
+    <div>
+      <ul class="flex items-center gap-4 text-white font-mono font-semibold text-lg">
+        <li>
+          <a routerLink="/admin/" routerLinkActive="underline">Productos</a>
+        </li>
+        <li>
+          <a routerLink="order" routerLinkActive="underline">Pedidos</a>
+        </li>
+        <li>
+          <a routerLink="profile" routerLinkActive="underline" class="space-x-2">
+            <fa-icon [icon]="faPerson"></fa-icon> Mi cuenta
+          </a>
+        </li>
+        <li>
+          <a routerLink="cart" routerLinkActive="underline">
+            <fa-icon [icon]="faCartShopping"></fa-icon>
+          </a>
+        </li>
+    </ul>
+    </div>
+  </nav>
+</header>

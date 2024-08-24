@@ -1,0 +1,116 @@
+<div class="h-screen bg-gradient  flex items-center justify-center">
+  <div class="rounded-xl bg-white max-w-[600px] shadow-xl">
+    <div class="mb-4 py-4 h-16 flex items-center justify-between rounded-t-xl text-white relative px-6">
+      <span class="font-mono text-lg text-black font-semibold">Ingrese sus datos</span>
+      <button routerLink="/auth" class="bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded-lg absolute right-6">Volver al login</button>
+    </div>
+    <div class="overflow-y-auto max-h-[580px] p-8">
+      <div class="mb-6 flex items-center gap-3">
+        <input [(ngModel)]="rucInput" type="text" class="w-full placeholder:text-center border border-gray-300 py-2 px-3 rounded-lg placeholder:text-gray-500" placeholder="-- Ingrese su RUC --">
+        <button (click)="buscarRUC()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">Buscar</button>
+      </div>
+      <form [formGroup]="registerForm" class="space-y-6">
+        <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="name"
+              label="Nombre: "
+              [placeholder]="'-- Campo Obligatorio --'"
+            ></app-form-control>
+            <app-validation-error [control]="nameFb"></app-validation-error>
+          </div>
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="surname"
+              label="Apellido: "
+              [placeholder]="'-- Campo Obligatorio --'"
+            ></app-form-control>
+            <app-validation-error [control]="surnameFb"></app-validation-error>
+          </div>
+        </div>
+        <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="dni"
+              label="DNI: "
+              [placeholder]="'-- Campo Obligatorio --'"
+            ></app-form-control>
+            <app-validation-error [control]="dniFb"></app-validation-error>
+          </div>
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="ruc"
+              label="RUC: "
+              placeholder="-- Campo Opcional --"
+            ></app-form-control>
+            <app-validation-error [control]="rucFb"></app-validation-error>
+          </div>
+        </div>
+        <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="reason"
+              label="Razón: "
+              placeholder="-- Campo Opcional --"
+            ></app-form-control>
+            <app-validation-error [control]="reasonFb"></app-validation-error>
+          </div>
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="phone"
+              label="Teléfono: "
+              [placeholder]="'-- Campo Obligatorio --'"
+              
+            ></app-form-control>
+            <app-validation-error [control]="phoneFb"></app-validation-error>
+          </div>
+        </div>
+        <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="address"
+              label="Dirección: "
+              [placeholder]="'-- Campo Obligatorio --'"
+            ></app-form-control>
+            <app-validation-error [control]="addressFb"></app-validation-error>
+          </div>
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="email"
+              label="Correo: "
+              [placeholder]="'-- Campo Obligatorio --'"
+            ></app-form-control>
+            <app-validation-error [control]="emailFb"></app-validation-error>
+          </div>
+        </div>
+        <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+          <div>
+            <app-form-control
+              [form]="registerForm"
+              controlName="password"
+              label="Contraseña: "
+              [placeholder]="'-- Campo Obligatorio --'"
+            ></app-form-control>
+            <app-validation-error [control]="passwordFb"></app-validation-error>
+          </div>
+          
+        </div>
+        <button
+          type="submit"
+          (click)="onSubmit()"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        >
+          Registrarse
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

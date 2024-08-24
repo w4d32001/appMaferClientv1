@@ -1,0 +1,63 @@
+<div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Actualizar datos</h2>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div class="grid grid-cols-1 gap-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+          <input id="name" formControlName="name" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <app-validation-error [control]="nameFb"></app-validation-error>
+        </div>
+  
+        <div>
+          <label for="surname" class="block text-sm font-medium text-gray-700">Apellido</label>
+          <input id="surname" formControlName="surname" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <app-validation-error [control]="surnameFb"></app-validation-error>
+        </div>
+  
+        <div>
+          <label for="dni" class="block text-sm font-medium text-gray-700">DNI</label>
+          <input id="dni" formControlName="dni" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <app-validation-error [control]="dniFb"></app-validation-error>
+        </div>
+  
+        <div>
+          <label for="ruc" class="block text-sm font-medium text-gray-700">RUC</label>
+          <input id="ruc" formControlName="ruc" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+         <app-validation-error [control]="rucFb"></app-validation-error>
+        </div>
+  
+        <div>
+          <label for="reason" class="block text-sm font-medium text-gray-700">Razon</label>
+          <input id="reason" formControlName="reason" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+         <app-validation-error [control]="reasonFb"></app-validation-error>
+        </div>
+  
+        <div class="mb-4">
+            <label for="image" class="block text-gray-700">Imagen de perfil</label>
+            <input id="image" type="file" (change)="captureImg($event)" class="form-input" />
+            @if(imagePreview){
+                <div class="mt-2">
+                    <img [src]="imagePreview" alt="Image Preview" class="w-32 h-32 object-cover" />
+                  </div>
+            }
+          </div>
+  
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Correo</label>
+          <input id="email" formControlName="email" type="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+         <app-validation-error [control]="emailFb"></app-validation-error>
+        </div>
+  
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700">Telefono</label>
+          <input id="phone" formControlName="phone" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+         <app-validation-error [control]="phoneFb"></app-validation-error>
+        </div>
+  
+        <div class="mt-6">
+          <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Actualizar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

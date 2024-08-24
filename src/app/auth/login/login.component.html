@@ -1,0 +1,50 @@
+<div class="h-screen bg-gradient flex items-center justify-center">
+  <div class="rounded-xl bg-white min-w-[400px] max-w-md h-auto shadow-xl shadow-black">
+    <div class="mb-4 py-4 h-24 flex flex-col rounded-t-xl gap-3 px-4 text-center">
+      <span class="text-slate-500 font-mono text-2xl">Bienvenido</span>
+      <span class="text-slate-400 text-md">Ingrese sus credenciales</span>
+    </div>
+    <div class="p-6">
+      <form [formGroup]="loginForm" class="space-y-4">
+        <app-form-control
+          [form]="loginForm"
+          controlName="email"
+          label="Correo:"
+          [placeholder]="'-- Campo Obligatorio --'"
+        ></app-form-control>
+        <app-validation-error [control]="emailFb"></app-validation-error>
+  
+        <app-form-control
+          [form]="loginForm"
+          controlName="password"
+          label="Contraseña:"
+          [type]="'password'"
+          [placeholder]="'-- Campo Obligatorio --'"
+        ></app-form-control>
+        <app-validation-error [control]="passwordFb"></app-validation-error>
+  
+        <div class="flex items-center justify-between text-sm">
+          <div class="flex gap-2 items-center">
+            <input type="checkbox" id="remember" class="focus:outline-none rounded-full">
+            <label for="remember" class="font-mono font-normal">Recordar</label>
+          </div>
+          <button type="button" class="text-blue-600 hover:underline">Olvidó su contraseña?</button>
+        </div>
+  
+        <div class="flex items-center justify-center">
+          <button
+            type="submit"
+            (click)="onSubmit()"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Ingresar
+          </button>
+        </div>
+      </form>
+      <div class="mt-4 text-center">
+        <span class="text-sm text-gray-600">¿Aún no estás registrado?</span>
+        <a routerLink="register" class="text-blue-600 hover:underline ml-1">Regístrate aquí</a>
+      </div>
+    </div>
+  </div>
+</div>

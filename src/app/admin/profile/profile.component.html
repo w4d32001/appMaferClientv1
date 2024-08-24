@@ -1,0 +1,24 @@
+<div class="container mx-auto mt-4">
+    <div class="grid grid-cols-8 gap-4">
+        <!-- Div que ocupa 2 columnas -->
+        <div class="col-span-8 md:col-span-3 p-4 bg-slate-100 rounded-sm">
+         <div class="">
+          <div class="flex justify-center flex-col items-center mb-4 gap-4 py-5">
+            <img [src]="client.image" alt="" class="w-30 rounded-full">
+            <span>Hola!</span>
+           </div>
+           <hr class="border border-slate-400 w-full flex my-4">
+           <ul class="border">
+            <li class="border-t border-l border-r py-5 text-lg font-normal font-serif text-slate-700 px-4 border-slate-400"><a routerLink="/admin/profile" class="flex justify-between items-center"><span class="flex justify-normal gap-2"><fa-icon [icon]="faPerson"></fa-icon> Perfil</span> <fa-icon [icon]="faArrowRight"></fa-icon></a></li>
+            <li class="border-t border-l border-r py-5 text-lg font-normal font-serif text-slate-700 px-4 border-slate-400"><a routerLink="address" class="flex justify-between items-center"><span class="flex justify-normal gap-2"><fa-icon [icon]="faAddress"></fa-icon> Direcciones</span> <fa-icon [icon]="faArrowRight"></fa-icon></a></li>
+            <li class="border-t border-l border-r py-5 text-lg font-normal font-serif text-slate-700 px-4 border-slate-400"><a routerLink="order" class="flex justify-between items-center"><span class="flex justify-normal gap-2"><fa-icon [icon]="faOrder"></fa-icon> Pedidos</span> <fa-icon [icon]="faArrowRight"></fa-icon></a></li>
+            <li class="border py-5 text-lg font-normal font-serif text-slate-700 px-4 border-slate-400"><a (click)="logout($event)" href="" class="flex justify-between items-center"><span class="flex justify-normal gap-2"><fa-icon [icon]="faExit"></fa-icon> Salir</span> <fa-icon [icon]="faArrowRight"></fa-icon></a></li>
+           </ul>
+         </div>
+
+        </div>
+        <div class="col-span-8 md:col-span-5 bg-white border border-slate-300 rounded-sm p-4 overflow-auto">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+</div>

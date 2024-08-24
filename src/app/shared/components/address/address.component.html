@@ -1,0 +1,173 @@
+@if (isLoading) {
+<app-loader></app-loader>
+}
+<div class="py-4">
+  <div class="flex flex-col gap-3">
+    <h3>Ubicacion actual</h3>
+    @if (client.address === "") {
+    <span>Sin ubicacion, le recomendamos actualizarla</span>
+    }@else {
+    <span>{{ client.address }}</span>
+    }
+  </div>
+  <hr class="h-1 text-slate-200 mt-3" />
+</div>
+<!-- <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+  <div class="flex-1">
+    <label for="departments" class="block text-sm font-medium text-gray-700"
+      >Departamento:</label
+    >
+    <select
+      id="departments"
+      #deptSelect
+      (change)="onDepartmentChange(deptSelect.value)"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+    >
+      <option value="">Seleccione un Departamento</option>
+      @for (department of departments; track $index) {
+      <option [value]="department.state_name">
+        {{ department.state_name }}
+      </option>
+      }
+    </select>
+  </div>
+
+  @if (provinces.length > 0) {
+  <div class="flex-1">
+    <label for="provinces" class="block text-sm font-medium text-gray-700"
+      >Provincia:</label
+    >
+    <select
+      id="provinces"
+      #provSelect
+      (change)="onProvinceChange(provSelect.value)"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+    >
+      <option value="">Seleccione una Provincia</option>
+      @for (province of provinces; track $index) {
+      <option [value]="province.city_name">{{ province.city_name }}</option>
+      }
+    </select>
+  </div>
+  } @if (districts.length > 0) {
+  <div class="flex-1">
+    <label for="districts" class="block text-sm font-medium text-gray-700"
+      >Distrito:</label
+    >
+    <select
+      id="districts"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+    >
+      <option value="">Seleccione un Distrito</option>
+      @for (district of districts; track $index) {
+      <option [value]="district.city_name">{{ district.city_name }}</option>
+      }
+    </select>
+  </div>
+  }
+</div> -->
+<div class="my-4 flex flex-col gap-3">
+    <span class="block text-sm font-medium text-gray-700">Si su zona no se encuentra haga click aqui</span>
+    @if(!showEdit){
+        <button (click)="show()" class="bg-orange-500 hover:bg-orange-700 text-white py-3 px-4 rounded-lg">
+            Click aqui!!
+        </button>
+    }@else {
+        <button (click)="close()" class="bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 rounded-lg">
+            Cerrar
+        </button>
+    }
+    
+</div>
+
+@if(showEdit){
+    <div class="mt-4">
+        <div>
+          <span class="block text-sm font-medium text-gray-700">Especifique su zona aquí:</span>
+        </div>
+        <form [formGroup]="oneAddressForm" (ngSubmit)="onSubmit()">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+                <div>
+                  <label for="custom-department" class="block text-sm font-medium text-gray-700">Departamento</label>
+                  <input 
+                    type="text" 
+                    id="custom-department" 
+                    formControlName="department"
+                    placeholder="-- Obligatorio --"
+                    class="placeholder:text-center mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  <app-validation-error [control]="departmentFb" ></app-validation-error>
+                </div>
+            
+                <div>
+                  <label for="custom-province" class="block text-sm font-medium text-gray-700">Provincia</label>
+                  <input 
+                    type="text" 
+                    id="custom-province" 
+                    formControlName="province"
+                    placeholder="-- Obligatorio --"
+                    class="placeholder:text-center mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  <app-validation-error [control]="provinceFb" ></app-validation-error>
+                
+                </div>
+            
+                <div>
+                  <label for="custom-district" class="block text-sm font-medium text-gray-700">Distrito</label>
+                  <input 
+                    type="text" 
+                    id="custom-district" 
+                    formControlName="district"
+                    placeholder="-- Obligatorio --"
+                    class="placeholder:text-center mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  <app-validation-error [control]="districtFb" ></app-validation-error>
+                
+                </div>
+            
+                <div>
+                  <label for="custom-number" class="block text-sm font-medium text-gray-700">Número</label>
+                  <input 
+                    type="text" 
+                    id="custom-number" 
+                    placeholder="-- Obligatorio --"
+                    formControlName="number"
+                    class="placeholder:text-center mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  <app-validation-error [control]="numberFb" ></app-validation-error>
+                
+                </div>
+            
+                <div>
+                  <label for="custom-floor" class="block text-sm font-medium text-gray-700">Piso o Apartamento</label>
+                  <input 
+                    type="text" 
+                    id="custom-floor" 
+                    placeholder="-- Opcional --"
+                    formControlName="floor"
+                    class="placeholder:text-center mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  <app-validation-error [control]="floorFb" ></app-validation-error>
+                
+                </div>
+                <div>
+                  <label for="custom-reference" class="block text-sm font-medium text-gray-700">Referencia</label>
+                  <input 
+                    type="text" 
+                    id="custom-reference" 
+                    placeholder="-- Opcional --"
+                    formControlName="reference"
+                    class="placeholder:text-center mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  <app-validation-error [control]="referenceFb" ></app-validation-error>
+                
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">
+                  Guardar
+                </button>
+              </div>
+        </form>
+        
+    </div>
+}
+  

@@ -1,0 +1,82 @@
+<div class="container flex flex-col sm:flex-row">
+  <!-- Left Section: Payment -->
+  <div class="w-full sm:w-1/2 p-4 border-b sm:border-r">
+    <h2 class="text-xl font-semibold mb-4">Método de Pago</h2>
+    <form>
+      <div class="mb-4">
+        <label
+          for="paymentMethod"
+          class="block text-sm font-medium text-gray-700"
+        >
+          Método de Pago:
+        </label>
+        <select
+          id="paymentMethod"
+          [(ngModel)]="paymentMethod"
+          name="paymentMethod"
+          class="mt-1 block w-full p-2 border rounded-md"
+          required
+        >
+          <option value="" selected disabled>Escoja un método de pago</option>
+          @for (method of payments; track $index) {
+          <option [value]="method.id">
+            {{ method.name }}
+          </option>
+          }
+        </select>
+      </div>
+
+      @if (paymentMethod === '2') {
+      <div class="mb-4">
+        <app-payment-header></app-payment-header>
+       <app-payment-form-component [amount]="totalAmount"></app-payment-form-component>
+      </div>
+      }
+      <!-- Mostrar contenedor adicional si se selecciona Tarjeta -->
+
+      <div class="mb-4">
+        <p class="font-semibold">Total: {{ totalAmount | currency }}</p>
+      </div>
+      @if (paymentMethod === '1'){
+      <button
+        type="submit"
+        class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md"
+        (click)="onChange()"
+      >
+        Recojo en local
+      </button>
+      }
+    </form>
+  </div>
+
+  <!-- Right Section: Cart Details -->
+  <div class="w-full sm:w-1/2 p-4">
+    <h2 class="text-xl font-semibold mb-4">Detalles del Carrito</h2>
+    <ul>
+      @for (item of cartItems; track $index) {
+      <li class="mb-4">
+        <div class="flex justify-between items-center">
+          <span>{{ item.name }}</span>
+          <img [src]="item.image" alt="" class="w-10" />
+          <span>{{ item.price | currency }}</span>
+          <span>{{ item.price * item.quantity | currency}}</span>
+          <button (click)="removeItem(item)" class="text-red-500">
+            Eliminar
+          </button>
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+</div>
+
+@if(paymentMethod === '1'){
+    <div class="flex flex-col gap-4 ml-4 mt-8 font-medium text-gray-700">
+        <h2>Ha seleccionado recojo en local</h2>
+        <div class="flex flex-col gap-4">
+            <span>Se prepararan sus productos para su llegada</span>
+            <span>Agregaremos los productos a su pedido</span>
+        </div>
+        <span>El pago estara en espera hasta que se acerque al local a cancelar</span>
+    </div>
+}

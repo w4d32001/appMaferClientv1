@@ -1,0 +1,25 @@
+
+header {
+    background-color: #9370DB;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.navbar {
+    height: 82px !important;
+    background-color: #f8485e !important;
+    box-shadow: 0 4px 9px #e0393980;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0px 20px;
+    }
+    .container-fluid {
+    display: flex;
+    align-items: center;
+    }
+
+    .content-img {
+      display: flex;
+      justify-content: center;
+    }

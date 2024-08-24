@@ -1,0 +1,34 @@
+<!-- cart.component.html -->
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Carrito de compras</h1>
+    <div *ngIf="cartItems.length === 0" class="text-center">
+      <p>Tu carrito está vacío</p>
+    </div>
+    <div *ngFor="let item of cartItems" class="bg-white border relative border-gray-200 rounded-lg shadow p-4 mb-4 flex items-center">
+      <span class="absolute top-0 left-0 bg-gray-900 text-white py-2 px-4 rounded-lg">c/u {{item.stock}}</span>
+      <img [src]="item.image" alt="" class="w-24 h-24 object-cover mr-4" />
+      <div class="flex-1">
+        <h2 class="text-xl font-bold">{{ item.name }}</h2>
+        <p>{{ item.description }}</p>
+        <p class="text-lg font-bold">${{ item.price }}</p>
+        <div class="flex items-center mt-2">
+          <input 
+            type="number" 
+            [(ngModel)]="item.quantity" 
+            min="1" 
+            [max]="inventories[item.id] || 0"
+            (change)="updateQuantity(item, item.quantity)"
+            class="border rounded p-1 w-16 text-center"
+            [attr.disabled]="item.quantity >= (inventories[item.id] || 0) ? true : null"
+          />
+          <button (click)="removeItem(item)" class="bg-red-500 text-white rounded ml-4 px-4 py-2">Eliminar</button>
+        </div>
+      </div>
+    </div>
+    <div class="text-right font-bold text-xl mt-4">
+      Total: ${{ getTotalPrice() }}
+    </div>
+  </div>
+  @if(cartItems.length !== 0){
+    <button (click)="checkQuantitiesBeforeRedirect()"  class="bg-red-500 hover:bg-red-700 text-white py-3 px-4 rounded-lg">Continuar</button>
+  }

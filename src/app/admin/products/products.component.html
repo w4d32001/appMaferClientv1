@@ -1,0 +1,48 @@
+@if(isLoading){
+  <app-loader></app-loader>
+}
+@if(!isLoading){
+  <div class="container mx-auto p-4">
+    <div class="mb-4">
+      <label for="categoryFilter" class="mr-2">Filtrar por Categoría:</label>
+      <select
+        id="categoryFilter"
+        [(ngModel)]="selectedCategoryId"
+        (change)="filterProducts()"
+        class="p-2 border rounded"
+      >
+        <option value="">Todas</option>
+        @for (category of categories; track $index) {
+        <option [value]="category.id">
+          {{ category.name }}
+        </option>
+        }
+      </select>
+    </div>
+  
+    <div class="grid grid-cols-1 md:grid-cols-8 gap-4">
+      <div class="md:col-span-8 p-4">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          @for (product of filteredProducts; track $index) {
+          <app-card
+            [inventory]="product.id"
+            [image]="product.product.img"
+            [price]="product.product.price"
+            [name]="product.product.name"
+            [description]="product.product.description"
+            [stock]="product.stock"
+            (openModal)="openModal(product)"
+          ></app-card>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  @if (selectedProduct) {
+  <app-product-modal [product]="selectedProduct" (close)="closeModal()">
+  </app-product-modal>
+  }
+  
+}
