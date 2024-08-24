@@ -35,7 +35,7 @@
       <!-- Mostrar contenedor adicional si se selecciona Tarjeta -->
 
       <div class="mb-4">
-        <p class="font-semibold">Total: {{ totalAmount | currency }}</p>
+        <p class="font-semibold">Total: S/ {{ totalAmount }}</p>
       </div>
       @if (paymentMethod === '1'){
       <button
@@ -58,8 +58,8 @@
         <div class="flex justify-between items-center">
           <span>{{ item.name }}</span>
           <img [src]="item.image" alt="" class="w-10" />
-          <span>{{ item.price | currency }}</span>
-          <span>{{ item.price * item.quantity | currency}}</span>
+          <span>S/ {{ item.price }}</span>
+          <span>S/ {{ item.price * item.quantity }}</span>
           <button (click)="removeItem(item)" class="text-red-500">
             Eliminar
           </button>

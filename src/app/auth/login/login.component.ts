@@ -50,6 +50,7 @@ export class LoginComponent {
       },
       (error) => {
         this.notify.showErrorToast(error.error.error)
+        console.log(error.error.error)
       }
     )
   }
