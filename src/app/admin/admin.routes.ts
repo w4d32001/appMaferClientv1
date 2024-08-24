@@ -14,7 +14,7 @@ export const ADMIN_ROUTES: Routes = [
     {
         path: '', component: DashboardLayoutComponent, children: [
             {
-                path: '', component: ProductsComponent,  canActivate: [AuthGuard]
+                path: '', component: ProductsComponent,
             },
             {
                 path: 'cart', component: CartComponent, canActivate: [AuthGuard]
